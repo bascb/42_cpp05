@@ -1,7 +1,7 @@
-NAME = materia
+NAME = bure
 CXX = c++
 CXXFLAGS = -std=c++98 -Wshadow -Wall -Werror -Wextra -g
-SRC = main.cpp
+SRC = Bureaucrat.cpp main.cpp
 OBJ = $(SRC:%.cpp=%.o)
 	
 all: $(NAME)

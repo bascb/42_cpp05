@@ -6,11 +6,12 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 11:05:48 by bcastelo          #+#    #+#             */
-/*   Updated: 2024/06/02 11:26:24 by bcastelo         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:52:34 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include "Bureaucrat.hpp"
 
 #define WIDTH 60
 
@@ -36,7 +37,7 @@ int	main(int argc, char **argv)
 			print_header("Options and usage");
 			std::cout << "Options:" << std::endl;
 			std::cout << std::endl;
-			std::cout << "mat - Test Materia class" << std::endl;
+			std::cout << "const - Test Constructors and print" << std::endl;
 			std::cout << std::endl;
 			std::cout << "Usage example:" << std::endl;
 			std::cout << std::endl;
@@ -44,12 +45,19 @@ int	main(int argc, char **argv)
 			std::cout << std::endl;
 			return (0);
 		}
-		else if (test == "mat")
+		else if (test == "const")
 		{
-			print_header("mat");
+			print_header("Testing constructor and object print");
+			Bureaucrat first("Original", 120);
+			Bureaucrat second(first);
+			Bureaucrat third("Other", 50);
 
+			std::cout << "First: " << first << std::endl;
+			std::cout << "Second: " << second << std::endl;
+			std::cout << "Third: " << third << std::endl;
 
-			std::cout << "Some tests " << std::endl;
+			third = first;
+			std::cout << "Third: " << third << std::endl;
 		}
 	}
 	{
