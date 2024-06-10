@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 11:05:48 by bcastelo          #+#    #+#             */
-/*   Updated: 2024/06/02 18:52:34 by bcastelo         ###   ########.fr       */
+/*   Updated: 2024/06/10 21:41:35 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,14 @@ int	main(int argc, char **argv)
 			std::cout << "Options:" << std::endl;
 			std::cout << std::endl;
 			std::cout << "const - Test Constructors and print" << std::endl;
+			std::cout << "h_const - Test Constructor TooHigh Exception" << std::endl;
+			std::cout << "l_const - Test Constructor TooLow Exception" << std::endl;
+			std::cout << "i_grade - Test Grade incrementor" << std::endl;
+			std::cout << "d_grade - Test Grade decrementor" << std::endl;
 			std::cout << std::endl;
 			std::cout << "Usage example:" << std::endl;
 			std::cout << std::endl;
-			std::cout << argv[0] << " mat" << std::endl;
+			std::cout << argv[0] << " const" << std::endl;
 			std::cout << std::endl;
 			return (0);
 		}
@@ -59,10 +63,90 @@ int	main(int argc, char **argv)
 			third = first;
 			std::cout << "Third: " << third << std::endl;
 		}
+		else if (test == "h_const")
+		{
+			print_header("Testing Constructor TooHigh Exception");
+			try
+			{
+				std::cout << "Trying to create a Bureaucrat with grade of 120" << std::endl;
+				Bureaucrat first("Correct", 120);
+				std::cout << "Trying to create a Bureaucrat with grade of 0" << std::endl;
+				Bureaucrat second("Too High", 0);
+			}
+			catch (std::exception & e)
+			{
+				std::cerr << "Error: " << e.what() << std::endl;
+			}
+		}
+		else if (test == "l_const")
+		{
+			print_header("Testing Constructor TooLow Exception");
+			try
+			{
+				std::cout << "Trying to create a Bureaucrat with grade of 120" << std::endl;
+				Bureaucrat first("Correct", 120);
+				std::cout << "Trying to create a Bureaucrat with grade of 151" << std::endl;
+				Bureaucrat second("Too Low", 151);
+			}
+			catch (std::exception & e)
+			{
+				std::cerr << "Error: " << e.what() << std::endl;
+			}
+		}
+		else if (test == "i_grade")
+		{
+			print_header("Testing Grade incrementor");
+			try
+			{
+				std::cout << "Trying to create a Bureaucrat with grade of 2" << std::endl;
+				Bureaucrat first("Great student", 2);
+				std::cout << first << std::endl;
+				std::cout << "Incrementing grade..." << std::endl;
+				first.incGrade();
+				std::cout << first << std::endl;
+				std::cout << "Incrementing grade..." << std::endl;
+				first.incGrade();
+			}
+			catch (std::exception & e)
+			{
+				std::cerr << "Error: " << e.what() << std::endl;
+			}
+		}
+		else if (test == "d_grade")
+		{
+			print_header("Testing Grade decrementor");
+			try
+			{
+				std::cout << "Trying to create a Bureaucrat with grade of 149" << std::endl;
+				Bureaucrat first("Bad student", 149);
+				std::cout << first << std::endl;
+				std::cout << "Deccrementing grade..." << std::endl;
+				first.decGrade();
+				std::cout << first << std::endl;
+				std::cout << "Deccrementing grade..." << std::endl;
+				first.decGrade();
+			}
+			catch (std::exception & e)
+			{
+				std::cerr << "Error: " << e.what() << std::endl;
+			}
+		}
 	}
 	{
-		print_header("Subject");
-		std::cout << "Subject tests" << std::endl;
+		print_header("Options and usage");
+		std::cout << "Options:" << std::endl;
+		std::cout << std::endl;
+		std::cout << "const - Test Constructors and print" << std::endl;
+		std::cout << "h_const - Test Constructor TooHigh Exception" << std::endl;
+		std::cout << "l_const - Test Constructor TooLow Exception" << std::endl;
+		std::cout << "i_grade - Test Grade incrementor" << std::endl;
+		std::cout << "d_grade - Test Grade decrementor" << std::endl;
+		std::cout << std::endl;
+		std::cout << "Usage example:" << std::endl;
+		std::cout << std::endl;
+		std::cout << argv[0] << " const" << std::endl;
+		std::cout << std::endl;
+		return (0);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:45:50 by bcastelo          #+#    #+#             */
-/*   Updated: 2024/06/02 18:36:04 by bcastelo         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:43:01 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 Bureaucrat::Bureaucrat( std::string new_name, int new_grade ) : name(new_name)
 {
-	std::cout << "Bureaucrat default constructor" << std::endl;
+	std::cout << "Bureaucrat default constructor called for " << name << std::endl;
+	if (new_grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	if (new_grade > 150)
+		throw Bureaucrat::GradeTooLowException();
     grade = new_grade;
 }
 
@@ -35,7 +39,7 @@ Bureaucrat& Bureaucrat::operator=( const Bureaucrat& src )
 
 Bureaucrat::~Bureaucrat( void )
 {
-	std::cout << "Bureaucrat Destructor called" << std::endl;
+	std::cout << "Bureaucrat Destructor called for " << name << std::endl;
 }
 
 std::string Bureaucrat::getName( void ) const
@@ -46,6 +50,30 @@ std::string Bureaucrat::getName( void ) const
 int Bureaucrat::getGrade( void ) const
 {
     return (grade);
+}
+
+void  Bureaucrat::incGrade( void )
+{
+	if (grade - 1 < 1)
+		throw Bureaucrat::GradeTooHighException();
+	grade--;	
+}
+
+void  Bureaucrat::decGrade( void )
+{
+	if (grade + 1 > 150)
+		throw Bureaucrat::GradeTooLowException();
+	grade++;	
+}
+
+const char *Bureaucrat::GradeTooHighException::what(void) const throw()
+{
+	return ("Grade is too high!");
+}
+
+const char *Bureaucrat::GradeTooLowException::what(void) const throw()
+{
+	return ("Grade is too low!");
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &item)
