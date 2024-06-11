@@ -1,7 +1,7 @@
-NAME = bure
+NAME = form
 CXX = c++
 CXXFLAGS = -std=c++98 -Wshadow -Wall -Werror -Wextra -g
-SRC = Bureaucrat.cpp main.cpp
+SRC = Bureaucrat.cpp Form.cpp main.cpp
 OBJ = $(SRC:%.cpp=%.o)
 	
 all: $(NAME)
