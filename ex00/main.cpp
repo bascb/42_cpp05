@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 11:05:48 by bcastelo          #+#    #+#             */
-/*   Updated: 2024/06/10 21:41:35 by bcastelo         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:19:27 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ int	main(int argc, char **argv)
 			}
 		}
 	}
+	if (argc == 1)
 	{
 		print_header("Options and usage");
 		std::cout << "Options:" << std::endl;
@@ -146,7 +147,6 @@ int	main(int argc, char **argv)
 		std::cout << std::endl;
 		std::cout << argv[0] << " const" << std::endl;
 		std::cout << std::endl;
-		return (0);
 	}
 	return (0);
 }
