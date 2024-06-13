@@ -6,12 +6,13 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 11:05:48 by bcastelo          #+#    #+#             */
-/*   Updated: 2024/06/11 19:19:27 by bcastelo         ###   ########.fr       */
+/*   Updated: 2024/06/13 20:12:45 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 #define WIDTH 60
 
@@ -52,9 +53,9 @@ int	main(int argc, char **argv)
 		else if (test == "const")
 		{
 			print_header("Testing constructor and object print");
-			Bureaucrat first("Original", 120);
-			Bureaucrat second(first);
-			Bureaucrat third("Other", 50);
+			Form first("Original", 120, 80);
+			Form second(first);
+			Form third("Other", 50, 30);
 
 			std::cout << "First: " << first << std::endl;
 			std::cout << "Second: " << second << std::endl;
