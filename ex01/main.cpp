@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 11:05:48 by bcastelo          #+#    #+#             */
-/*   Updated: 2024/06/13 20:12:45 by bcastelo         ###   ########.fr       */
+/*   Updated: 2024/06/16 22:34:36 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ int	main(int argc, char **argv)
 			std::cout << "Options:" << std::endl;
 			std::cout << std::endl;
 			std::cout << "const - Test Constructors and print" << std::endl;
-			std::cout << "h_const - Test Constructor TooHigh Exception" << std::endl;
-			std::cout << "l_const - Test Constructor TooLow Exception" << std::endl;
-			std::cout << "i_grade - Test Grade incrementor" << std::endl;
-			std::cout << "d_grade - Test Grade decrementor" << std::endl;
+			std::cout << "h_exec_const - Test Constructor TooHigh Execute grade Exception" << std::endl;
+			std::cout << "l_exec_const - Test Constructor TooLow Execute grade Exception" << std::endl;
+			std::cout << "h_sign_const - Test Constructor TooHigh Sign grade Exception" << std::endl;
+			std::cout << "l_sign_const - Test Constructor TooLow Sign grade Exception" << std::endl;
+			std::cout << "form_signed - Test Sucecssfull form beSigned function" << std::endl;
+			std::cout << "form_not_signed - Test Unsucecssfull form beSigned function" << std::endl;
 			std::cout << std::endl;
 			std::cout << "Usage example:" << std::endl;
 			std::cout << std::endl;
@@ -64,68 +66,96 @@ int	main(int argc, char **argv)
 			third = first;
 			std::cout << "Third: " << third << std::endl;
 		}
-		else if (test == "h_const")
+		else if (test == "h_exec_const")
 		{
-			print_header("Testing Constructor TooHigh Exception");
+			print_header("Testing Constructor TooHigh Execute grade Exception");
 			try
 			{
-				std::cout << "Trying to create a Bureaucrat with grade of 120" << std::endl;
-				Bureaucrat first("Correct", 120);
-				std::cout << "Trying to create a Bureaucrat with grade of 0" << std::endl;
-				Bureaucrat second("Too High", 0);
+				std::cout << "Trying to create a Form with execute grade of 120" << std::endl;
+				Form first("Correct", 120, 120);
+				std::cout << "Trying to create a Form with execue grade of 0" << std::endl;
+				Form second("Too High", 120, 0);
 			}
 			catch (std::exception & e)
 			{
 				std::cerr << "Error: " << e.what() << std::endl;
 			}
 		}
-		else if (test == "l_const")
+		else if (test == "l_exec_const")
 		{
-			print_header("Testing Constructor TooLow Exception");
+			print_header("Testing Constructor TooLow Execute grade Exception");
 			try
 			{
-				std::cout << "Trying to create a Bureaucrat with grade of 120" << std::endl;
-				Bureaucrat first("Correct", 120);
-				std::cout << "Trying to create a Bureaucrat with grade of 151" << std::endl;
-				Bureaucrat second("Too Low", 151);
+				std::cout << "Trying to create a Form with execute grade of 120" << std::endl;
+				Form first("Correct", 120, 120);
+				std::cout << "Trying to create a Bureaucrat with execute grade of 151" << std::endl;
+				Form second("Too Low", 120, 151);
 			}
 			catch (std::exception & e)
 			{
 				std::cerr << "Error: " << e.what() << std::endl;
 			}
 		}
-		else if (test == "i_grade")
+		else if (test == "h_sign_const")
 		{
-			print_header("Testing Grade incrementor");
+			print_header("Testing Constructor TooHigh Sign grade Exception");
 			try
 			{
-				std::cout << "Trying to create a Bureaucrat with grade of 2" << std::endl;
-				Bureaucrat first("Great student", 2);
-				std::cout << first << std::endl;
-				std::cout << "Incrementing grade..." << std::endl;
-				first.incGrade();
-				std::cout << first << std::endl;
-				std::cout << "Incrementing grade..." << std::endl;
-				first.incGrade();
+				std::cout << "Trying to create a Form with sign grade of 120" << std::endl;
+				Form first("Correct", 120, 120);
+				std::cout << "Trying to create a Form with sign grade of 0" << std::endl;
+				Form second("Too High", 0, 120);
 			}
 			catch (std::exception & e)
 			{
 				std::cerr << "Error: " << e.what() << std::endl;
 			}
 		}
-		else if (test == "d_grade")
+		else if (test == "l_sign_const")
 		{
-			print_header("Testing Grade decrementor");
+			print_header("Testing Constructor TooLow Sign grade Exception");
 			try
 			{
-				std::cout << "Trying to create a Bureaucrat with grade of 149" << std::endl;
-				Bureaucrat first("Bad student", 149);
-				std::cout << first << std::endl;
-				std::cout << "Deccrementing grade..." << std::endl;
-				first.decGrade();
-				std::cout << first << std::endl;
-				std::cout << "Deccrementing grade..." << std::endl;
-				first.decGrade();
+				std::cout << "Trying to create a Form with sign grade of 120" << std::endl;
+				Form first("Correct", 120, 120);
+				std::cout << "Trying to create a Bureaucrat with sign grade of 151" << std::endl;
+				Form second("Too Low", 151, 120);
+			}
+			catch (std::exception & e)
+			{
+				std::cerr << "Error: " << e.what() << std::endl;
+			}
+		}
+		else if (test == "form_signed")
+		{
+			print_header("Testing Sucessfull form beSigned function");
+			try
+			{
+				Form correct("Form with grade to sign = 80", 80, 120);
+				Bureaucrat student("My grade is 79", 79);
+				std::cout << student << std::endl;
+				std::cout << correct << std::endl;
+				std::cout << "Trying to sign form" << std::endl;
+				correct.beSigned(student);
+				std::cout << correct << std::endl;
+			}
+			catch (std::exception & e)
+			{
+				std::cerr << "Error: " << e.what() << std::endl;
+			}
+		}
+		else if (test == "form_not_signed")
+		{
+			print_header("Testing Unsucessfull form beSigned function");
+			try
+			{
+				Form correct("Form with grade to sign = 80", 80, 120);
+				Bureaucrat student("My grade is 81", 81);
+				std::cout << student << std::endl;
+				std::cout << correct << std::endl;
+				std::cout << "Trying to sign form" << std::endl;
+				correct.beSigned(student);
+				std::cout << correct << std::endl;
 			}
 			catch (std::exception & e)
 			{
@@ -139,10 +169,12 @@ int	main(int argc, char **argv)
 		std::cout << "Options:" << std::endl;
 		std::cout << std::endl;
 		std::cout << "const - Test Constructors and print" << std::endl;
-		std::cout << "h_const - Test Constructor TooHigh Exception" << std::endl;
-		std::cout << "l_const - Test Constructor TooLow Exception" << std::endl;
-		std::cout << "i_grade - Test Grade incrementor" << std::endl;
-		std::cout << "d_grade - Test Grade decrementor" << std::endl;
+		std::cout << "h_exec_const - Test Constructor TooHigh Execute grade Exception" << std::endl;
+		std::cout << "l_exec_const - Test Constructor TooLow Execute grade Exception" << std::endl;
+		std::cout << "h_sign_const - Test Constructor TooHigh Sign grade Exception" << std::endl;
+		std::cout << "l_sign_const - Test Constructor TooLow Sign grade Exception" << std::endl;
+		std::cout << "form_signed - Test Sucecssfull form beSigned function" << std::endl;
+		std::cout << "form_not_signed - Test Unsucecssfull form beSigned function" << std::endl;
 		std::cout << std::endl;
 		std::cout << "Usage example:" << std::endl;
 		std::cout << std::endl;

@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:55:15 by bcastelo          #+#    #+#             */
-/*   Updated: 2024/06/13 21:46:54 by bcastelo         ###   ########.fr       */
+/*   Updated: 2024/06/16 22:31:40 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@ int Form::getGradeToExecute( void ) const
     return (gradeToExecute);
 }
 
+void Form::beSigned( const Bureaucrat& src)
+{
+	if (src.getGrade() > gradeToSign)
+		throw Form::GradeTooLowException();
+	isSigned = true;
+}
+
 const char *Form::GradeTooHighException::what(void) const throw()
 {
 	return ("Grade is too high!");
@@ -73,6 +80,6 @@ const char *Form::GradeTooLowException::what(void) const throw()
 
 std::ostream &operator<<(std::ostream &os, const Form &item)
 {
-	os << item.getName() << ", Form is signed?  " << item.getSigned() << ", Grade to sign: " << item.getGradeToSign() << ", Grade to execute: " << item.getGradeToExecute();
+	os << item.getName() << ", Form is signed? " << item.getSigned() << ", Grade to sign: " << item.getGradeToSign() << ", Grade to execute: " << item.getGradeToExecute();
 	return (os);
 }

@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:50:11 by bcastelo          #+#    #+#             */
-/*   Updated: 2024/06/13 12:04:17 by bcastelo         ###   ########.fr       */
+/*   Updated: 2024/06/16 22:16:04 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {
@@ -28,6 +31,7 @@ class Form
         bool getSigned( void ) const;
         int getGradeToSign( void ) const;
         int getGradeToExecute( void ) const;
+        void beSigned( const Bureaucrat& );
         class GradeTooHighException : public std::exception
         {
             public:
