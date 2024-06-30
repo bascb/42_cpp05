@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 11:05:48 by bcastelo          #+#    #+#             */
-/*   Updated: 2024/06/16 22:34:36 by bcastelo         ###   ########.fr       */
+/*   Updated: 2024/06/30 18:54:07 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	main(int argc, char **argv)
 			std::cout << "l_sign_const - Test Constructor TooLow Sign grade Exception" << std::endl;
 			std::cout << "form_signed - Test Sucecssfull form beSigned function" << std::endl;
 			std::cout << "form_not_signed - Test Unsucecssfull form beSigned function" << std::endl;
+			std::cout << "bur_signed - Test Sucecssfull Bureaucrat signForm function" << std::endl;
+			std::cout << "bur_not_signed - Test Unsucecssfull Bureaucrat signForm function" << std::endl;
 			std::cout << std::endl;
 			std::cout << "Usage example:" << std::endl;
 			std::cout << std::endl;
@@ -162,6 +164,42 @@ int	main(int argc, char **argv)
 				std::cerr << "Error: " << e.what() << std::endl;
 			}
 		}
+		else if (test == "bur_signed")
+		{
+			print_header("Testing Sucessfull Bureaucrat signForm function");
+			try
+			{
+				Form correct("Form with grade to sign = 80", 80, 120);
+				Bureaucrat student("My grade is 79", 79);
+				std::cout << student << std::endl;
+				std::cout << correct << std::endl;
+				std::cout << "Trying to signForm" << std::endl;
+				student.signForm(correct);
+				std::cout << correct << std::endl;
+			}
+			catch (std::exception & e)
+			{
+				std::cerr << "Error: " << e.what() << std::endl;
+			}
+		}
+		else if (test == "bur_not_signed")
+		{
+			print_header("Testing Unsucessfull Bureaucrat signForm function");
+			try
+			{
+				Form correct("Form with grade to sign = 80", 80, 120);
+				Bureaucrat student("My grade is 81", 81);
+				std::cout << student << std::endl;
+				std::cout << correct << std::endl;
+				std::cout << "Trying to sign form" << std::endl;
+				student.signForm(correct);
+				std::cout << correct << std::endl;
+			}
+			catch (std::exception & e)
+			{
+				std::cerr << "Error: " << e.what() << std::endl;
+			}
+		}
 	}
 	if (argc == 1)
 	{
@@ -175,6 +213,8 @@ int	main(int argc, char **argv)
 		std::cout << "l_sign_const - Test Constructor TooLow Sign grade Exception" << std::endl;
 		std::cout << "form_signed - Test Sucecssfull form beSigned function" << std::endl;
 		std::cout << "form_not_signed - Test Unsucecssfull form beSigned function" << std::endl;
+		std::cout << "bur_signed - Test Sucecssfull Bureaucrat signForm function" << std::endl;
+		std::cout << "bur_not_signed - Test Unsucecssfull Bureaucrat signForm function" << std::endl;
 		std::cout << std::endl;
 		std::cout << "Usage example:" << std::endl;
 		std::cout << std::endl;

@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:45:50 by bcastelo          #+#    #+#             */
-/*   Updated: 2024/06/11 19:17:37 by bcastelo         ###   ########.fr       */
+/*   Updated: 2024/06/30 19:22:45 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,19 @@ void  Bureaucrat::decGrade( void )
 	if (grade + 1 > 150)
 		throw Bureaucrat::GradeTooLowException();
 	grade++;	
+}
+
+void Bureaucrat::signForm( Form& src)
+{
+	try
+	{
+		src.beSigned(*this);
+		std::cout << name << " signed " << src.getName() << std::endl;
+	}
+	catch (std::exception & e)
+	{
+		std::cout << name << " couldn’t sign " << src.getName() << " because " << e.what() << std::endl;
+	}
 }
 
 const char *Bureaucrat::GradeTooHighException::what(void) const throw()
