@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:50:11 by bcastelo          #+#    #+#             */
-/*   Updated: 2024/07/07 19:07:12 by bcastelo         ###   ########.fr       */
+/*   Updated: 2024/07/15 09:10:56 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ class AForm
                 const char *what(void) const throw();
         };
         class GradeTooLowException : public std::exception
+        {
+            public:
+                const char *what(void) const throw();
+        };
+        class NotSignedException : public std::exception
         {
             public:
                 const char *what(void) const throw();

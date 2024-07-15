@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 10:28:09 by bcastelo          #+#    #+#             */
-/*   Updated: 2024/07/07 19:08:17 by bcastelo         ###   ########.fr       */
+/*   Updated: 2024/07/14 19:08:46 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define SHRUBBERYCREATIONFORM_HPP
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <exception>
 #include "AForm.hpp"

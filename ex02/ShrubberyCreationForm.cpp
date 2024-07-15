@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 10:56:03 by bcastelo          #+#    #+#             */
-/*   Updated: 2024/07/07 19:09:19 by bcastelo         ###   ########.fr       */
+/*   Updated: 2024/07/14 19:09:15 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,17 @@ std::string ShrubberyCreationForm::getTarget( void ) const
 
 void ShrubberyCreationForm::safe_exec( void ) const
 {
+	std::ifstream	fin;
+	
     std::cout << "ShrubberyCreationForm safe exec called for target " << target << std::endl;
+	try
+	{
+		std::string f_name = "abbbcc.txt";
+		fin.open(f_name.c_str(), std::ifstream::in);
+		fin.close();
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
 }
