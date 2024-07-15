@@ -1,7 +1,7 @@
 NAME = form
 CXX = c++
 CXXFLAGS = -std=c++98 -Wshadow -Wall -Werror -Wextra -g
-SRC = Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp main.cpp
+SRC = Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp main.cpp
 OBJ = $(SRC:%.cpp=%.o)
 	
 all: $(NAME)
