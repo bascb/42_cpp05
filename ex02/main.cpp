@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 11:05:48 by bcastelo          #+#    #+#             */
-/*   Updated: 2024/07/07 20:02:25 by bcastelo         ###   ########.fr       */
+/*   Updated: 2024/07/15 20:52:10 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,31 @@ int	main(int argc, char **argv)
 				Bureaucrat correct("Grade 109", 109);
 				ShrubberyCreationForm city("city");
 				
+				print_comment("Signed");
+				home->beSigned(correct);
+				city.beSigned(correct);
+				print_comment("Execute");
+				home->execute(correct);
+				city.execute(correct);
+			
+				print_comment("Destruct objects");
+				delete home;
+			}
+			catch (std::exception & e)
+			{
+				std::cerr << "Error: " << e.what() << std::endl;
+			}
+		}
+		else if (test == "shrub_not_signed")
+		{
+			print_header("Testing ShrubberyCreationForm concrete class execute wuthout being signed");
+			try
+			{
+				print_comment("Construct objects");
+				AForm* home = new ShrubberyCreationForm("home");
+				Bureaucrat correct("Grade 109", 109);
+				ShrubberyCreationForm city("city");
+				
 				print_comment("Execute");
 				home->execute(correct);
 				city.execute(correct);
@@ -93,7 +118,7 @@ int	main(int argc, char **argv)
 		}
 		else if (test == "shrub_w_grade")
 		{
-			print_header("Testing ShrubberyCreationForm execute with worng grade");
+			print_header("Testing ShrubberyCreationForm execute with wrong grade");
 			try
 			{
 				print_comment("Construct objects");
@@ -189,6 +214,7 @@ void	print_help(char *prog_name)
 	std::cout << std::endl;
 	std::cout << "shrub_const- Testing ShrubberyCreationForm concrete class constructors" << std::endl;
 	std::cout << "shrub_exec- Testing ShrubberyCreationForm concrete class execute" << std::endl;
+	std::cout << "shrub_not_signed- Testing ShrubberyCreationForm concrete class execute wuthout being signed" << std::endl;
 	std::cout << "shrub_w_grade- Testing ShrubberyCreationForm concrete class execute" << std::endl;
 	std::cout << std::endl;
 	std::cout << "Usage example:" << std::endl;
