@@ -6,13 +6,14 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 11:05:48 by bcastelo          #+#    #+#             */
-/*   Updated: 2024/07/15 20:52:10 by bcastelo         ###   ########.fr       */
+/*   Updated: 2024/07/18 23:30:21 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 #define WIDTH 60
 
@@ -123,8 +124,103 @@ int	main(int argc, char **argv)
 			{
 				print_comment("Construct objects");
 				ShrubberyCreationForm home("home");
-				Bureaucrat incorrect("Grade 147", 147);
+				Bureaucrat incorrect("Grade 144", 144);
 				
+				home.beSigned(incorrect);
+				print_comment("Try to execute");
+				home.execute(incorrect);
+			
+				print_comment("Destruct objects");
+			}
+			catch (std::exception & e)
+			{
+				std::cerr << "Error: " << e.what() << std::endl;
+			}
+		}
+		else if (test == "robot_const")
+		{
+			print_header("Testing RobotomyRequestForm concrete class constructors");
+			try
+			{
+				print_comment("Construct objects");
+				AForm* home = new RobotomyRequestForm("home");
+				AForm* garden = new RobotomyRequestForm("garden");
+				AForm* street = new RobotomyRequestForm("street");
+				RobotomyRequestForm city("city");
+
+				print_comment("Get data");
+				std::cout << "Form of type " << home->getName() << " with target " << home->getTarget() << std::endl;
+				std::cout << "Form of type " << garden->getName() << " with target " << garden->getTarget() << std::endl;
+				std::cout << "Form of type " << street->getName() << " with target " << street->getTarget() << std::endl;
+				std::cout << "Form of type " << city.getName() << " with target " << city.getTarget() << std::endl;
+
+				print_comment("Destruct objects");
+				delete home;
+				delete garden;
+				delete street;
+			}
+			catch (std::exception & e)
+			{
+				std::cerr << "Error: " << e.what() << std::endl;
+			}
+		}
+		else if (test == "robot_exec")
+		{
+			print_header("Testing RobotomyRequestForm concrete class execute");
+			try
+			{
+				print_comment("Construct objects");
+				AForm* home = new RobotomyRequestForm("home");
+				Bureaucrat correct("Grade 44", 44);
+				RobotomyRequestForm city("city");
+				
+				print_comment("Signed");
+				home->beSigned(correct);
+				city.beSigned(correct);
+				print_comment("Execute");
+				home->execute(correct);
+				city.execute(correct);
+			
+				print_comment("Destruct objects");
+				delete home;
+			}
+			catch (std::exception & e)
+			{
+				std::cerr << "Error: " << e.what() << std::endl;
+			}
+		}
+		else if (test == "robot_not_signed")
+		{
+			print_header("Testing RobotomyRequestForm concrete class execute wuthout being signed");
+			try
+			{
+				print_comment("Construct objects");
+				AForm* home = new RobotomyRequestForm("home");
+				Bureaucrat correct("Grade 44", 44);
+				RobotomyRequestForm city("city");
+				
+				print_comment("Execute");
+				home->execute(correct);
+				city.execute(correct);
+			
+				print_comment("Destruct objects");
+				delete home;
+			}
+			catch (std::exception & e)
+			{
+				std::cerr << "Error: " << e.what() << std::endl;
+			}
+		}
+		else if (test == "robot_w_grade")
+		{
+			print_header("Testing RobotomyRequestForm execute with wrong grade");
+			try
+			{
+				print_comment("Construct objects");
+				RobotomyRequestForm home("home");
+				Bureaucrat incorrect("Grade 71", 71);
+
+				home.beSigned(incorrect);	
 				print_comment("Try to execute");
 				home.execute(incorrect);
 			
@@ -212,13 +308,17 @@ void	print_help(char *prog_name)
 	print_header("Options and usage");
 	std::cout << "Options:" << std::endl;
 	std::cout << std::endl;
-	std::cout << "shrub_const- Testing ShrubberyCreationForm concrete class constructors" << std::endl;
-	std::cout << "shrub_exec- Testing ShrubberyCreationForm concrete class execute" << std::endl;
-	std::cout << "shrub_not_signed- Testing ShrubberyCreationForm concrete class execute wuthout being signed" << std::endl;
-	std::cout << "shrub_w_grade- Testing ShrubberyCreationForm concrete class execute" << std::endl;
+	std::cout << "shrub_const - Testing ShrubberyCreationForm concrete class constructors" << std::endl;
+	std::cout << "shrub_exec - Testing ShrubberyCreationForm concrete class execute" << std::endl;
+	std::cout << "shrub_not_signed - Testing ShrubberyCreationForm concrete class execute wuthout being signed" << std::endl;
+	std::cout << "shrub_w_grade - Testing ShrubberyCreationForm concrete class execute" << std::endl;
+	std::cout << "robot_const - Testing RobotomyRequestForm concrete class constructors" << std::endl;
+	std::cout << "robot_exec - Testing RobotomyRequestForm concrete class execute" << std::endl;
+	std::cout << "robot_not_signed - Testing RobotomyRequestForm concrete class execute wuthout being signed" << std::endl;
+	std::cout << "robot_w_grade - Testing RobotomyRequestForm concrete class execute" << std::endl;
 	std::cout << std::endl;
 	std::cout << "Usage example:" << std::endl;
 	std::cout << std::endl;
-	std::cout << prog_name << " shrub" << std::endl;
+	std::cout << prog_name << " shrub_const" << std::endl;
 	std::cout << std::endl;
 }
